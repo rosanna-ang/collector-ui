@@ -24,7 +24,10 @@ function NavbarComponent() {
                 <div class="collapse navbar-collapse" id="navbarToggle">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <Link to="/secured/main" className="nav-link">Home</Link>
+                            <Link to="/secured/main" className="nav-link active">Home</Link>
+                        </li>
+                        <li class="nav-item">
+                            <Link to="/secured/data" className="nav-link">Data</Link>
                         </li>
                         <li class="nav-item">
                             <Link to="/secured/admin/users" className="nav-link">Admin</Link>
