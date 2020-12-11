@@ -1,24 +1,31 @@
 import logo from './logo.svg';
 import './App.css';
+import LoginComponent from './components/LoginComponent';
+import HomeComponent from './components/HomeComponent';
+import AdminComponent from './components/AdminComponent';
+import NavbarComponent from './components/NavbarComponent';
+import AuthComponent from './components/AuthComponent';
+import {AuthContext, useAuthContext} from './auth/AuthContext';
+import {useEffect, useState} from 'react';
+import {BrowserRouter, Switch, Route} from 'react-router-dom';
+
 
 function App() {
+  // const [principal, setPrincipal] = useState();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AuthComponent>
+        <BrowserRouter>
+          <NavbarComponent></NavbarComponent>
+          <div class="container">
+            <Switch>
+              <Route path="/" exact component={LoginComponent}></Route>
+              <Route path="/secured/main" exact component={HomeComponent}></Route>
+              <Route path="/secured/admin/users" exact component={AdminComponent}></Route>
+            </Switch>
+          </div>
+        </BrowserRouter>
+    </AuthComponent>
   );
 }
 
