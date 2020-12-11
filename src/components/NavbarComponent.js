@@ -1,15 +1,18 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {useAuthContext} from '../auth/AuthContext';
 import {Link} from 'react-router-dom';
 
 function NavbarComponent() {
     const {principal} = useAuthContext();
+    const currLoc = window.location.pathname;
+    const [mainNavItem, setMainNavItem] = useState(currLoc);
 
     function logout() {
         principal.reset();
         window.location = "/";
 
     }
+    
 
     if (!principal.authenticated)
         return null;
@@ -24,13 +27,13 @@ function NavbarComponent() {
                 <div class="collapse navbar-collapse" id="navbarToggle">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <Link to="/secured/main" className="nav-link active">Home</Link>
+                            <Link to="/secured/main" className={currLoc.startsWith("/secured/main") ? "nav-link active" : "nav-link"} onClick={() => {setMainNavItem("/secured/main")}}>Home</Link>
                         </li>
                         <li class="nav-item">
-                            <Link to="/secured/data" className="nav-link">Data</Link>
+                            <Link to="/secured/data" className={currLoc.startsWith("/secured/data") ? "nav-link active" : "nav-link"} onClick={() => {setMainNavItem("/secured/data")}}>Data</Link>
                         </li>
                         <li class="nav-item">
-                            <Link to="/secured/admin/users" className="nav-link">Admin</Link>
+                            <Link to="/secured/admin/users" className={currLoc.startsWith("/secured/admin") ? "nav-link active" : "nav-link"} onClick={() => {setMainNavItem("/secured/admin/users")}}>Admin</Link>
                         </li>
                     </ul>
                     <div class="d-flex">
