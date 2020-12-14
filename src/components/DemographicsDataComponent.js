@@ -9,7 +9,7 @@ function DemographicsDataComponent() {
 
     useEffect(async() => {
         try {
-            const response = await axios.get(Config.backend+"/data/demographics/list", {headers: {"Authorization": "Bearer "+principal.token}});
+            const response = await axios.get(Config.backend+"/data/demographics/list", principal.getRequestAuthHeader());
             setTableData(response.data.entities);
         } catch (e) {
             window.location = "/";

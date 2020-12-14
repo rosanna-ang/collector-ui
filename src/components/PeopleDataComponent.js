@@ -9,7 +9,7 @@ function PeopleDataComponent() {
 
     useEffect(async() => {
         try {
-            const response = await axios.get(Config.backend+"/data/persons/list", {headers: {"Authorization": "Bearer "+principal.token}});
+            const response = await axios.get(Config.backend+"/data/persons/list", principal.getRequestAuthHeader());
             setTableData(response.data.entities);
         } catch (e) {
             window.location = "/";

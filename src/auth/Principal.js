@@ -15,6 +15,14 @@ class Principal {
         this.roleMap = null;
     }
 
+    getRequestAuthHeader(contentType) {
+        if (!contentType) {
+            contentType = "application/json";
+        }
+
+        return {headers: {"Authorization": "Bearer "+this.token, "Content-Type": contentType}};
+    }
+
     initFromStorage = async() => {
         let storedToken = localStorage.getItem(Principal.LOCAL_STORAGE_KEY);
 
@@ -33,7 +41,7 @@ class Principal {
         }
 
         try {
-            const resp = await axios.get(Config.backend+"/auth/whoami", {headers: {"Authorization": "Bearer "+this.token}});
+            const resp = await axios.get(Config.backend+"/auth/whoami", this.getRequestAuthHeader());
             this.profile = resp.data.entity;
             this.authenticated = true;
             this.roleMap = {};

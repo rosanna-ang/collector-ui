@@ -4,8 +4,9 @@ import {useAuthContext} from '../auth/AuthContext';
 const axios = require('axios');
 
 function LoginComponent() {
-    const [username, setUsername] = useState();
-    const [password, setPassword] = useState();
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+    const [check, setCheck] = useState(false);
     const [validationError, setValidationError] = useState();
 
     const {principal, setPrincipal} = useAuthContext();
@@ -13,17 +14,20 @@ function LoginComponent() {
     async function doLogin(event) {
         event.preventDefault();
         setValidationError(null);
-        try {
-            const loginResponse = await axios.post(Config.backend+"/auth/login", {username: username, password: password});    
-            const token = loginResponse.data.token;
-            await principal.reloadProfileWithNewToken(token);
-            setPrincipal(principal);
-    
-            window.location = "/secured/main";
-        } catch (e) {
-            setValidationError("Username and password do not match");
-        }
+        setCheck(true);
 
+        if (username.length > 0 && password.length > 0) {
+            try {
+                const loginResponse = await axios.post(Config.backend+"/auth/login", {username: username, password: password});    
+                const token = loginResponse.data.token;
+                await principal.reloadProfileWithNewToken(token);
+                setPrincipal(principal);
+        
+                window.location = "/secured/main";
+            } catch (e) {
+                setValidationError("Username and password do not match");
+            }
+        }
     }
 
     return  (
@@ -37,11 +41,13 @@ function LoginComponent() {
                 <form onSubmit={doLogin}>
                     <div class="mb-3">
                         <label for="username" class="form-label">Username</label>
-                        <input type="text" class="form-control form-control-lg" value={username} onChange={e => setUsername(e.target.value)} />
+                        <input type="text" class={`form-control form-control-lg ${check && username.length == 0 ? "is-invalid" : null}`} value={username} onChange={e => setUsername(e.target.value)} />
+                        {check && username.length == 0 ? <div class="invalid-feedback">Username is required</div> : null}
                     </div>
                     <div class="mb-3">
                         <label for="password" class="form-label">Password</label>
-                        <input type="password" class="form-control form-control-lg" value={password} onChange={e => setPassword(e.target.value)} />
+                        <input type="password" class={`form-control form-control-lg ${check && password.length == 0 ? "is-invalid" : null}`} value={password} onChange={e => setPassword(e.target.value)} />
+                        {check && password.length == 0 ? <div class="invalid-feedback">Password is required</div> : null}
                     </div>
                     <button class="btn btn-primary" type="submit">Login</button>
                 </form>
