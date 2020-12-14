@@ -16,14 +16,11 @@ function UploadBatchDataFileComponent() {
     useEffect(async() => {
         const handlersRequest = await axios.get(Config.backend+"/data/available-handlers", principal.getRequestAuthHeader());
         setAvailableHandlers(handlersRequest.data.items);
-    });
+    }, []);
 
     async function doUpload(e) {
         e.preventDefault();
         setCheck(true);
-
-        console.log("date file: "+isInvalidDataFile()+": "+batchFile);
-        console.log("type: "+isInvalidHandlerType()+": "+handler);
 
         if (!isInvalidDataFile() && !isInvalidHandlerType()) {
             const formData = new FormData();
