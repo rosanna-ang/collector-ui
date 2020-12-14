@@ -1,4 +1,5 @@
 const Config = {
+    pageBound: 3,
     backend: "http://localhost:9999"
 }
 
