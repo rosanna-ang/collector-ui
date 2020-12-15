@@ -33,6 +33,9 @@ function NavbarComponent() {
                             <Link to="/secured/data" className={currLoc.startsWith("/secured/data") ? "nav-link active" : "nav-link"} onClick={() => {setMainNavItem("/secured/data")}}>Data</Link>
                         </li>
                         <li class="nav-item">
+                            <Link to="/secured/reports" className={currLoc.startsWith("/secured/reports") ? "nav-link active" : "nav-link"} onClick={() => {setMainNavItem("/secured/reports")}}>Reports</Link>
+                        </li>
+                        <li class="nav-item">
                             <Link to="/secured/admin/users" className={currLoc.startsWith("/secured/admin") ? "nav-link active" : "nav-link"} onClick={() => {setMainNavItem("/secured/admin/users")}}>Admin</Link>
                         </li>
                     </ul>

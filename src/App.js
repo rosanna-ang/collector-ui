@@ -2,6 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import LoginComponent from './components/LoginComponent';
 import HomeComponent from './components/HomeComponent';
+import ReportsComponent from './components/ReportsComponent';
 import AdminComponent from './components/AdminComponent';
 import NavbarComponent from './components/NavbarComponent';
 import AuthComponent from './components/AuthComponent';
@@ -23,6 +24,7 @@ function App() {
               <Route path="/" exact component={LoginComponent}></Route>
               <Route path="/secured/main" exact component={HomeComponent}></Route>
               <Route path="/secured/data" exact component={DataComponent}></Route>
+              <Route path="/secured/reports" exact component={ReportsComponent}></Route>
               <Route path="/secured/admin/users" exact component={AdminComponent}></Route>
             </Switch>
           </div>
