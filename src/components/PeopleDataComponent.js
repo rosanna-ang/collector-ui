@@ -26,14 +26,15 @@ function PeopleDataComponent() {
     }
 
     return (
-        <div>
-            <table class="table table-bordered table-dark table-striped">
+        <div class="table-responsive">
+            <table class="table table-hover">
                 <thead>
                     <tr>
                         <th>#</th>
                         <th>First Name</th>
                         <th>Last Name</th>
-                        <th>DOB</th>
+                        <th>Date of Birth</th>
+                        <th>Birth Certificate Number</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -44,6 +45,7 @@ function PeopleDataComponent() {
                                 <td>{r.firstName}</td>
                                 <td>{r.lastName}</td>
                                 <td>{r.dob}</td>
+                                <td></td>
                             </tr>
                         )
                     })}

@@ -26,8 +26,8 @@ function DemographicsDataComponent() {
     }
 
     return (
-        <div>
-            <table class="table table-bordered table-dark table-striped">
+        <div class="table-responsive">
+            <table class="table table-hover">
                 <thead>
                     <tr>
                         <th>#</th>
