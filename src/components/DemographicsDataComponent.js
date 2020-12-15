@@ -42,7 +42,7 @@ function DemographicsDataComponent() {
                         return(
                             <tr>
                                 <td>{r.id}</td>
-                                <td>{r.person.firstName + " " + r.person.lastName}</td>
+                                <td>{r.associatedPersons[0].firstName + " " + r.associatedPersons[0].lastName}</td>
                                 <td>{r.submissionTime}</td>
                                 <td>{r.telephoneNumber}</td>
                                 <td>{r.address}</td>
